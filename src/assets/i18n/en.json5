@@ -640,7 +640,7 @@
   "bitstream-request-a-copy.alert.canDownload2": "here",
 
   "bitstream-request-a-copy.header": "Request a copy of the file",
-  
+
   "bitstream-request-a-copy.intro": "Enter the following information to request a copy for the following item: ",
 
   "bitstream-request-a-copy.intro.bitstream.one": "Requesting the following file: ",
@@ -2577,7 +2577,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Filter By Category",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -2695,7 +2695,7 @@
 
 
 
-  "menu.section.statistics": "Statistics",
+  "menu.section.statistics": "About Us",
 
   "menu.section.statistics_task": "Statistics Task",
 
@@ -2836,7 +2836,7 @@
 
   "nav.search": "Search",
 
-  "nav.statistics.header": "Statistics",
+  "nav.statistics.header": "About Us",
 
   "nav.stop-impersonating": "Stop impersonating EPerson",
 
@@ -3232,9 +3232,9 @@
 
   "repository.image.logo": "Repository logo",
 
-  "repository.title.prefix": "DSpace Angular :: ",
+  "repository.title.prefix": "SARAO Repository:: ",
 
-  "repository.title.prefixDSpace": "DSpace Angular ::",
+  "repository.title.prefixDSpace": "SARAO Repository ::",
 
 
   "resource-policies.add.button": "Add",
@@ -3636,11 +3636,11 @@
   "sorting.lastModified.DESC": "Last modified Descending",
 
 
-  "statistics.title": "Statistics",
+  "statistics.title": "About Us",
 
   "statistics.header": "Statistics for {{ scope }}",
 
-  "statistics.breadcrumbs": "Statistics",
+  "statistics.breadcrumbs": "About Us",
 
   "statistics.page.no-data": "No data available",
 

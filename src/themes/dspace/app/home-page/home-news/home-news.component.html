@@ -3,37 +3,41 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="d-flex flex-wrap">
         <div>
-          <h1 class="display-3">DSpace 7</h1>
-          <p class="lead">DSpace is the world leading open source repository platform that enables
-            organisations to:</p>
+          <h2 class="display-3 alignment">SARAO Repository</h2>
+          <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
+          <div class="wrapper">
+            <div class="md-column">
+              <h3 class="title"> Overview </h3>
+                <p class="more-info-text" >Sarao is leading South Africa’s</p>
+                <p class="more-info-text"> involvement in the SKA </p>
+                <p class="more-info-text"> on behalf of Department of </p>
+                <p class="more-info-text"> Science & Innovation.</p>
+            </div>
+            <div class="column">
+              <h3 class="title" >Sarao</h3>
+              <p class="more-info-text">
+                <p class="more-info-text">The South African Radio</p>
+                <p class="more-info-text">Astronomy Observatory(SARAO) is a</p>
+                <p class="more-info-text">national facility managed by</p>
+                <p class="more-info-text">the National Research Foundation</p>
+                <p class="more-info-text">(NRF) and incorporates all</p>
+                <p class="more-info-text">national radio astronomy</p>
+                <p class="more-info-text">telescopes and programmes</p>
+              <p>
+            </div>
+            <div class="column">
+              <h3 class="title">Contact Us </h3>
+              <p class="more-info-text">Email: enquiries@ska.ac.za</p>
+
+              <p class="more-info-text">Cape town</p>
+              <p class="more-info-text">Tel : +27 (0)21 506 7300</p>
+              <p class="more-info-text">2 Fir street, Black river park,</p>
+              <p class="more-info-text">Observatory( North gate entrance, </p>
+              <p class="more-info-text">  Cape Town, South Africa</p>
+            </div>
+          </div>
         </div>
       </div>
-      <ul>
-        <li>easily ingest documents, audio, video, datasets and their corresponding Dublin Core
-          metadata
-        </li>
-        <li>open up this content to local and global audiences, thanks to the OAI-PMH interface and
-          Google Scholar optimizations
-        </li>
-        <li>issue permanent urls and trustworthy identifiers, including optional integrations with
-          handle.net and DataCite DOI
-        </li>
-      </ul>
-      <p>Join an international community of <a href="https://wiki.lyrasis.org/display/DSPACE/DSpace+Positioning" target="_blank">leading institutions using DSpace</a>.</p>
-      <p>The test user accounts below have their password set to the name of this
-        software in lowercase.</p>
-      <ul>
-        <li>Demo Site Administrator = dspacedemo+admin@gmail.com</li>
-        <li>Demo Community Administrator = dspacedemo+commadmin@gmail.com</li>
-        <li>Demo Collection Administrator = dspacedemo+colladmin@gmail.com</li>
-        <li>Demo Submitter = dspacedemo+submit@gmail.com</li>
-      </ul>
     </div>
   </div>
-  <picture class="background-image">
-    <source type="image/webp" srcset="assets/dspace/images/banner.webp 2000w, assets/dspace/images/banner-half.webp 1200w, assets/dspace/images/banner-tall.webp 768w">
-    <source type="image/jpg" srcset="assets/dspace/images/banner.jpg 2000w, assets/dspace/images/banner-half.jpg 1200w, assets/dspace/images/banner-tall.jpg 768w">
-    <img alt="" [src]="'assets/dspace/images/banner.jpg'"/><!-- without the []="''" Firefox downloads both the fallback and the resolved image -->
-  </picture>
-  <small class="credits">Photo by <a href="https://www.pexels.com/@inspiredimages">@inspiredimages</a></small>
 </div>
