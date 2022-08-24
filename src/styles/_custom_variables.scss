@@ -22,11 +22,13 @@
   --ds-header-bg: #{$white};
   --ds-header-logo-height: 50px;
   --ds-header-logo-height-xs: 50px;
-  --ds-header-icon-color: #{$cyan};
+  //Header item colour
+  --ds-header-icon-color: #{$primary-blue};
   --ds-header-icon-color-hover: #{darken($white, 15%)};
   --ds-header-navbar-border-top-color: #{$white};
   --ds-header-navbar-border-bottom-color: #{$gray-400};
-  --ds-navbar-link-color: #{$cyan};
+  //Menu items colour
+  --ds-navbar-link-color: #{$primary-blue};
   --ds-navbar-link-color-hover: #{darken($cyan, 15%)};
 
   $admin-sidebar-bg: darken(#2B4E72, 17%);
@@ -77,8 +79,10 @@
   --ds-home-news-background-color: #{$gray-200};
 
   --ds-breadcrumb-bg: #{$gray-200} !important;
-  --ds-breadcrumb-link-color: #{$cyan};
-  --ds-breadcrumb-link-active-color: #{darken($cyan, 30%)};
+  // breadcrumbs link
+  --ds-breadcrumb-link-color: #{$primary-blue};
+  // active bread crumbs
+  --ds-breadcrumb-link-active-color: #{$primary-blue};
   --ds-breadcrumb-max-length: 200px;
 
   --ds-slider-color: #{$green};

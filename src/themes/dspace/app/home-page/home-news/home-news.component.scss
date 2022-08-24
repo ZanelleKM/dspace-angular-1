@@ -21,8 +21,16 @@
     .alignment {
       align-items: center;
       justify-content: center;
+      padding-top:140px;
+      padding-left: 250px;
       padding-bottom:50px;
     }
+
+    .search-wrapper{
+      padding-bottom:400px;
+      padding-right: 100px;
+    }
+
     .wrapper {
       padding-top:180px;
       display: grid;
@@ -46,7 +54,7 @@
 
     .title {
       font-size: 16px;
-      font-family: "sans-serif";
+      font-family: 'open sans', Helvetica, Arial, sans-serif;
       font-weight: normal;
     }
 

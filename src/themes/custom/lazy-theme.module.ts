@@ -79,6 +79,7 @@ import { WorkflowItemSendBackComponent } from './app/workflowitems-edit-page/wor
 import { BreadcrumbsComponent } from './app/breadcrumbs/breadcrumbs.component';
 import { FeedbackComponent } from './app/info/feedback/feedback.component';
 import { CommunityListComponent } from './app/community-list-page/community-list/community-list.component';
+import { AboutComponent } from './app/about/about.component';
 
 
 const DECLARATIONS = [
@@ -118,6 +119,7 @@ const DECLARATIONS = [
   BreadcrumbsComponent,
   FeedbackComponent,
   CommunityListComponent,
+  AboutComponent
 ];
 
 @NgModule({
@@ -167,7 +169,7 @@ const DECLARATIONS = [
     SearchModule,
     FormsModule,
     ResourcePoliciesModule,
-    ComcolModule,
+    ComcolModule
   ],
   declarations: DECLARATIONS,
 })

@@ -11,4 +11,3 @@ import { HomeNewsComponent as BaseComponent } from '../../../../../app/home-page
  * Component to render the news section on the home page
  */
 export class HomeNewsComponent extends BaseComponent {}
-
