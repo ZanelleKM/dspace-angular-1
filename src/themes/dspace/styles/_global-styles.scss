@@ -18,7 +18,16 @@
   }
 
   h5 {
-    font-size: 1.1rem
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 8px;
+    font-weight: normal;
   }
   h3 {
     font-size: 12px;
@@ -33,8 +42,7 @@
 }
 
 header {
-  li > .navbar-section,
-  li > .expandable-navbar-section {
+  .navbar-navigation > li {
     display: flex;
     flex-direction: column;
     justify-content: center;
