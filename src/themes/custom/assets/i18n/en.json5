@@ -1,7 +1,6 @@
 {
   // DSpace default: "All of DSpace"
   "menu.section.browse_global": "Browse DSpace",
-
   // Sarao default: "SARAO :: "
   "repository.title.prefix": "SARAO :: ",
 }

@@ -2578,9 +2578,9 @@
   "menu.section.browse_community_by_title": "By Title",
 
   "menu.section.browse_global": "Filter By Category",
-
+  
   "menu.section.browse_global_about": "About Us",
-
+  
   "menu.section.browse_global_by_author": "By Author",
 
   "menu.section.browse_global_by_dateissued": "By Issue Date",
@@ -2697,7 +2697,7 @@
 
 
 
-  "menu.section.statistics": "Statistics",
+  "menu.section.statistics": "About Us",
 
   "menu.section.statistics_task": "Statistics Task",
 
@@ -3643,11 +3643,11 @@
   "sorting.lastModified.DESC": "Last modified Descending",
 
 
-  "statistics.title": "Statistics",
+  "statistics.title": "About Us",
 
   "statistics.header": "Statistics for {{ scope }}",
 
-  "statistics.breadcrumbs": "Statistics",
+  "statistics.breadcrumbs": "About Us",
 
   "statistics.page.no-data": "No data available",
 

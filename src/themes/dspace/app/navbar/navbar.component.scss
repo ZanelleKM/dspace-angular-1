@@ -8,7 +8,8 @@ nav.navbar {
 @media screen and (max-width: map-get($grid-breakpoints, md)) {
   .navbar {
     width: 100%;
-    background-color: var(--bs-white);
+    // Let's see what colour this is
+    background-color: var(--bs-purple);
     position: absolute;
     overflow: hidden;
     height: 0;
