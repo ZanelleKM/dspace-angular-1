@@ -2581,6 +2581,8 @@
 
   "menu.section.browse_global_about": "About Us",
 
+  "menu.section.browse_global_help": "Help Guide",
+
   "menu.section.browse_global_by_author": "By Author",
 
   "menu.section.browse_global_by_dateissued": "By Issue Date",
@@ -2704,6 +2706,8 @@
 
 // About Us Menu option
   "menu.section.about": "About Us",
+
+  "menu.section.help": "Help Guide",
 
   "menu.section.about_task": "Statistics Task",
 
@@ -3661,6 +3665,10 @@
   "about.title": "About Us",
 
   "about.breadcrumbs": "About Us",
+
+  "help.title": "Help Guide",
+
+  "help.breadcrumbs": "Help Guide",
 
   // "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
   //
