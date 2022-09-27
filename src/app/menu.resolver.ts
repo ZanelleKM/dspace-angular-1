@@ -121,7 +121,7 @@ export class MenuResolver implements Resolve<boolean> {
         model: {
           type: MenuItemType.LINK,
           text: `menu.section.browse_global_help`,
-          link: `/about`
+          link: `/help`
         } as LinkMenuItemModel
       }
     ];

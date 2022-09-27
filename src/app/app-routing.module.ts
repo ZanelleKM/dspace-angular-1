@@ -80,8 +80,8 @@ import { ThemedPageErrorComponent } from './page-error/themed-page-error.compone
           },
           {
             path: 'help',
-            loadChildren: () => import('./about-page/about-page.module')
-              .then((m) => m.AboutPageModule),
+            loadChildren: () => import('./help-guide/help-guide.module')
+              .then((m) => m.HelpPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
