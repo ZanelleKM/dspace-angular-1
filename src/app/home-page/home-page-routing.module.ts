@@ -15,7 +15,7 @@ import { MenuItemType } from '../shared/menu/menu-item-type.model';
         pathMatch: 'full',
         data: {
           title: 'home.title',
-          // Remove & Add Statistics
+          // Remove & Add Statistics ( Disappears when a certain menu is clicked, so made it a stand alone on menu.resolver.ts )
           menu: {
             public: [{
               id: 'statistics_site',

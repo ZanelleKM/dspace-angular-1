@@ -6,7 +6,6 @@ import { HelpPageRoutingModule } from './help-guide.routing.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer'
 
 const DECLARATIONS = [
-  HelpPageComponent,
 ];
 
 @NgModule({
