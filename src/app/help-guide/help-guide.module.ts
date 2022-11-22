@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { HelpPageComponent } from './help-guide.component';
 import { HelpPageRoutingModule } from './help-guide.routing.module';
-import { PdfViewerModule } from 'ng2-pdf-viewer'
+// import { PdfViewerModule } from 'ng2-pdf-viewer'
 
 const DECLARATIONS = [
 ];
@@ -13,7 +13,7 @@ const DECLARATIONS = [
     CommonModule,
     SharedModule,
     HelpPageRoutingModule,
-    PdfViewerModule
+    // PdfViewerModule
   ],
   declarations: [
     ...DECLARATIONS
