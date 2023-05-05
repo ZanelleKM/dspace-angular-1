@@ -16,11 +16,12 @@ export class ThemedCreateDoiComponent extends ThemedComponent<CreateDoiComponent
   }
 
   protected importThemedComponent(themeName: string): Promise<any> {
-    return import(`../../themes/${themeName}/app/create-doi/create-doi.component`);
+    return import(
+      `../../themes/${themeName}/app/create-doi/create-doi.component`
+    );
   }
 
   protected importUnthemedComponent(): Promise<any> {
     return import(`./create-doi.component`);
   }
-
 }
