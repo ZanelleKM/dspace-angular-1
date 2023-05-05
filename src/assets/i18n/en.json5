@@ -2581,6 +2581,8 @@
 
   "menu.section.browse_global_about": "About Us",
 
+  "menu.section.browse_global_create-doi": "Create Doi",
+
   "menu.section.browse_global_help": "Help Guide",
 
   "menu.section.browse_global_by_author": "By Author",
@@ -2706,6 +2708,8 @@
 
 // About Us Menu option
   "menu.section.about": "About Us",
+
+  "menu.section.create-doi": "Create Doi",
 
   "menu.section.help": "Help Guide",
 
@@ -3665,6 +3669,9 @@
   "about.title": "About Us",
 
   "about.breadcrumbs": "About Us",
+  
+
+  "create-doi.breadcrumbs": "Create Doi",
 
   "help.title": "Help Guide",
 

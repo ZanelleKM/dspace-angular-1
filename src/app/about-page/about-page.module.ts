@@ -24,5 +24,4 @@ const DECLARATIONS = [
   ],
 })
 export class AboutPageModule {
-
 }

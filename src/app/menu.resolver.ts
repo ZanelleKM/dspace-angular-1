@@ -114,6 +114,17 @@ export class MenuResolver implements Resolve<boolean> {
         } as LinkMenuItemModel
       },
       {
+        id: `browse_global_create-doi`,
+        active: false,
+        visible: true,
+        index: 0,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_create-doi`,
+          link: `/create-doi`
+        } as LinkMenuItemModel
+      },
+      {
         id: `browse_global_help`,
         active: false,
         visible: true,

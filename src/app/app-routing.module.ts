@@ -179,6 +179,12 @@ import { ThemedPageErrorComponent } from './page-error/themed-page-error.compone
               .then((m) => m.LogoutPageModule)
           },
           {
+            path: 'create-doi',
+            loadChildren: () => import('./create-doi/create-doi.module')
+              .then((m) => m.CreateDoiModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'submit',
             loadChildren: () => import('./submit-page/submit-page.module')
               .then((m) => m.SubmitPageModule),

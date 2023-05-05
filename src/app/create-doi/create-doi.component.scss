@@ -1,0 +1,196 @@
+.navbar {
+    color: #006da3;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  .required {
+    color: red;
+  }
+      
+
+  .css-16bg5hv {
+  flex-basis: 0px;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  } 
+
+  a:link {
+  color:rgb(3, 3, 48);
+  }
+  .comment {
+      resize: none;
+      height: 100px;
+    }
+  .label {
+  display: inline-block;
+  text-align: center;
+  line-height: 150%;
+  font-size: .85em;
+  }
+  .jumbotron{
+    /* What colour is this? <li> */
+    color: #dddddd;
+    /* Header colour */
+    background-color: white;
+    height: 200;
+  }
+  .container-main{
+    background-color: #d3d3d3;
+    padding: 20px;
+  }
+  .d-none{
+      display: none;
+  }
+  .info{
+    color: #dddddd;
+  }
+  .innerborder {
+  width:10%;
+//   -webkit-appearance: button;
+  background-color:#006da3;
+  color: white;
+  border: 1px solid #006da3;
+  font-size: 1.4rem;
+  }
+  .section-header {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: .2rem;
+  color: rgb(249, 245, 245);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  /*margin-top: 2.5em;*/
+  height: 30px;
+  width: 1410px;
+  background-color: #006da3;
+}
+  .center {
+  margin: 0 auto !important; /* I have added the !important attribute just for debugging, you can remove it. */
+  justify-content: center;
+  width:50%;
+  background-color: white;
+  }
+  .para{
+  position: relative;
+  left: 5%;
+  }
+  .menu-item{
+    padding-left: 600px;
+    align-items: center;
+  }
+  .nav-item{
+    padding-left:30px;
+    text-align: left;
+    color: #006da3;
+  }
+  .column {
+    float: left;
+    padding: 20px;
+    height: 150px; /* Should be removed. Only for demonstration */
+  }
+  .column3 {
+    float: left;
+    padding: 50px;
+    height: 150px; /* Should be removed. Only for demonstration */
+  }
+
+  .left {
+    width: 20%;
+  }
+  .right1 {
+    width: 17%;
+  }
+
+  .middle {
+    width: 63%;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .message-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+  }
+
+  .message-header {
+    background-color: #ccc;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .message-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .message-body {
+    margin-top: 10px;
+  }
+  
+  table {
+     font-family: arial, sans-serif;
+     border-collapse: collapse;
+     width: 60%;
+   color: #006da3;
+   background-color: white;
+    }
+  select,input {
+  padding: 8px;
+  font-size:15px;
+  width:50%;
+  -webkit-appearance: button;
+  
+  }
+  table input{
+  width:100%;
+  }  
+  .insideblock{
+    width:100%;
+  }
+  h1{
+    margin-top: 3%;
+  margin-bottom: 1%;
+  border-radius: 0;
+  position: relative;
+  left: 10%;
+  width: 900px;
+  }
+  td{
+    border: 1px solid #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-spacing: 50px;
+     
+  }
+  
+  th {
+    border: 1px solid #f2f2f2;
+    text-align: left;
+    padding: 8px;
+     
+  }
+    tr:nth-child(even) {
+      /* background-color: #dddddd; */
+    background-color: #f2f2f2;
+  }
+  /* Add a blue background color and some padding to the footer */
+  footer {
+    background-color: #006da3;
+    padding: 25px;
+  }
+  p.solid {border-style: solid;}
