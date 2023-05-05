@@ -80,23 +80,7 @@ async def read_items(request: Request,generate = Query(default=None),
                       {"resourceTypeGeneral": Resource},
                     "url": 'https://schema.datacite.org/meta/kernel-4.0/index.html',
                     "schemaVersion": 'http://datacite.org/schema/kernel-4'}}}
-    #query_items = {"Generate" : Generate,
-        #    "DOI" : DOI,
-        #    "Community" : Community,
-        #    "Collections" : Collections,
-        #    "Resource" : Resource,
-        #    "Title" : Title,
-        #    "Firstname" : Firstname,
-        #    "Lastname" : Lastname,
-        #    "Initials" : Initials,
-        #    "Affiliation" : Affiliation,
-        #    "Email" : Email,
-        #    "ORCHID" : ORCHID,
-        #    "AuthorFile" : AuthorFile,
-        #    "Abstract" : Abstract,
-        #    "Publisheddate" : Publisheddate,
-        #    "Path" : Path}
-    # Serializing json
+ 
     json_object = json.dumps(query_items, indent=4)
     query_params = dict(request.query_params)
     html = """
