@@ -980,7 +980,6 @@
 
   "collection.page.edit": "Edit this collection",
 
-  // "collection.page.handle": "Permanent URI for this collection",
 
   "collection.page.license": "License",
 
@@ -1188,8 +1187,6 @@
   "community.form.title": "Name",
 
   "community.page.edit": "Edit this community",
-
-  "community.page.handle": "Permanent URI for this community",
 
   "community.page.license": "License",
 
@@ -2581,7 +2578,7 @@
 
   "menu.section.browse_global_about": "About Us",
 
-  "menu.section.browse_global_create-doi": "Create Doi",
+  "menu.section.browse_global_create-doi": "Request or Update DOI",
 
   "menu.section.browse_global_help": "Help Guide",
 
@@ -2709,7 +2706,7 @@
 // About Us Menu option
   "menu.section.about": "About Us",
 
-  "menu.section.create-doi": "Create Doi",
+  "menu.section.create-doi": "Request or Update DOI",
 
   "menu.section.help": "Help Guide",
 
@@ -3671,7 +3668,7 @@
   "about.breadcrumbs": "About Us",
   
 
-  "create-doi.breadcrumbs": "Create Doi",
+  "create-doi.breadcrumbs": "Request or Update DOI",
 
   "help.title": "Help Guide",
 
@@ -4386,24 +4383,6 @@
   "submission.workspace.generic.view": "View",
 
   "submission.workspace.generic.view-help": "Select this option to view the item's metadata.",
-
-
-  "thumbnail.default.alt": "Thumbnail Image",
-
-  "thumbnail.default.placeholder": "No Thumbnail Available",
-
-  "thumbnail.project.alt": "Project Logo",
-
-  "thumbnail.project.placeholder": "Project Placeholder Image",
-
-  "thumbnail.orgunit.alt": "OrgUnit Logo",
-
-  "thumbnail.orgunit.placeholder": "OrgUnit Placeholder Image",
-
-  "thumbnail.person.alt": "Profile Picture",
-
-  "thumbnail.person.placeholder": "No Profile Picture Available",
-
 
 
   "title": "DSpace",
