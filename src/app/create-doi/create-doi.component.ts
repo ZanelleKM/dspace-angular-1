@@ -112,37 +112,35 @@ export class CreateDoiComponent {
       release:this.release,
       upgrade: this.upgrade1
     };
-
-    console.log(formData)
     var currentHostname = window.location.hostname;
     var action_url = '';
-    this.validateForm()
-    if (currentHostname === 'dspace.sdp.kat.ac.za') {
-      action_url = 'http://dspace.sdp.kat.ac.za:8069';
+    if(this.validateForm(formData)){
+      if (currentHostname === 'dspace.sdp.kat.ac.za') {
+        action_url = 'http://dspace.sdp.kat.ac.za:8069';
+      } else {
+    // default 
+        alert(currentHostname)
+        action_url = 'https://httpbin.org/post';
+      }
+     
+      this.http.post(action_url, formData)
+        .subscribe(
+          response => {
+            console.log('Form submitted successfully!', response);
+            // Handle success response
+          },
+          error => {
+            console.error('Error submitting form:', error);
+          }
+        )
+        this.authors = this.authors.filter(author => this.selectedRows.includes(author.id));
+        this.release = this.release.filter(entry => this.selectedRelease.includes(entry.id));
+        this.myForm.reset()
+        this.selectedRelease = [];
+        this.selectedRows = [];
     } else {
-  // default 
-      alert('currentHostname')
-      action_url = 'http://127.0.0.1:8000';
-    }
-   
-    this.http.post(action_url, formData)
-      .subscribe(
-        response => {
-          console.log('Form submitted successfully!', response);
-          this.authors = this.authors.filter(author => !this.selectedRows.includes(author.id));
-          this.release = this.release.filter(entry => !this.selectedRelease.includes(entry.id));
-          // Handle success response
-        },
-        error => {
-          console.error('Error submitting form:', error);
-          this.myForm.reset()
-          // Handle error response
-        }
-      )
-      this.authors = this.authors.filter(author => this.selectedRows.includes(author.id));
-      this.release = this.release.filter(entry => this.selectedRelease.includes(entry.id));
-      this.selectedRelease = [];
-      this.selectedRows = [];
+      alert('Please fill in all required fields')
+    }    
   }
   isStringEmpty(str: string): boolean {
     return str.length === 0;
@@ -170,19 +168,20 @@ export class CreateDoiComponent {
   selectedRelease: string[] = [];
 
   addAuthor() {
-      this.authors.push({ ...this.authorData });
-      this.clearForm();
-      this.authorData = {
-        firstName: '',
-        lastName: '',
-        initials: '',
-        affiliation: '',
-        email: '',
-        orchid: '',
-        id: Date.now().toString(),
-        checked: false
+      if(this.validateAuthor(this.authorData)){
+        this.authors.push({ ...this.authorData });
+        this.clearForm();
+        this.authorData = {
+          firstName: '',
+          lastName: '',
+          initials: '',
+          affiliation: '',
+          email: '',
+          orchid: '',
+          id: Date.now().toString(),
+          checked: false
+        }
       }
-      console.log(this.authors)
   }
   clearForm() {
     this.authorData = {
@@ -196,17 +195,43 @@ export class CreateDoiComponent {
       checked: false
     };
   }
+  validateAuthor(obj: any): boolean {
+    // Check if the object has the 'email' and 'name' properties
+    const email = obj['email'];
+    const name = obj['firstName'];
+    if ((name === null || name === undefined || name === '') && (email === null || email === undefined || email === '')) {
+      alert("Firstname and Email are required")
+      return false;
+    }
+    else {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+      alert("Please fill in valid email address")
+      return false;
+      }
+    }
+  
+    // All validations passed
+    return true;
+  }
+  validateRelease(obj: any): boolean {
+    // Check if the object has the 'download' and 'description' properties
+    const download = obj['download'];
+    const description = obj['description'];
+    if ((description === null || description === undefined || description === '') || (download === null || download === undefined || download === '')) {
+      alert("Download and Description are required")
+      return false;
+    }
+    // All validations passed
+    return true;
+  }
   deleteAuthor() {
-    console.log(this.selectedRows)
     this.authors = this.authors.filter(author => !this.selectedRows.includes(author.id));
-    console.log(this.authors)
     this.selectedRows = [];
   }
 
   deleteRow () {
-    console.log(this.selectedRelease)
     this.release = this.release.filter(entry => !this.selectedRelease.includes(entry.id));
-    console.log(this.release)
     //clear list after deleting
     this.selectedRelease = [];
   }
@@ -214,7 +239,7 @@ export class CreateDoiComponent {
   dataTableRows: any[] = [];
 
   updateChecked(event: any, id: string): void {
-    console.log('id',event, id)
+
     if (event.target.checked) {
       // If the checkbox is checked, add the author's ID to the selected authors
       this.selectedRows.push(id);
@@ -225,10 +250,8 @@ export class CreateDoiComponent {
         this.selectedRows.splice(index, 1);
       }
     }
-    console.log('Selected',this.selectedRows)
   }
   updateSelected(event: any, id: string): void {
-    console.log('id',event, id)
     if (event.target.checked) {
       // If the checkbox is checked, add the author's ID to the selected authors
       this.selectedRelease.push(id);
@@ -239,9 +262,9 @@ export class CreateDoiComponent {
         this.selectedRelease.splice(index, 1);
       }
     }
-    console.log('Selected',this.selectedRelease)
   }
   addRow() {
+    if(this.validateRelease(this.releaseData)){
       this.release.push({ ...this.releaseData });
       this.clearRow();
       this.releaseData = {
@@ -250,6 +273,7 @@ export class CreateDoiComponent {
         checked: false,
         id : Date.now().toString(),
       }
+    }
   }
   clearRow() {
     this.releaseData = {
@@ -267,23 +291,19 @@ export class CreateDoiComponent {
   email: string;
   @ViewChild('myForm') myForm!: NgForm;
 
-  validateForm(): boolean {
-
-    if (!this.myForm.valid) {
-      alert('Form is not valid')
-      return;
+  validateForm(obj): boolean {
+    for (const key in obj) {
+      if (key === "upgrade") {
+        continue; // Skip the specific key to ignore
+      }
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        if (value === null || value === undefined || value === '') {
+          return false;
+        }
+      }
     }
-    // if (!this.firstName || !this.email) {
-    //   alert('Please fill out all required fields.');
-    //   return false;
-    // }
-  
-    // if (!this.validateEmail(this.email)) {
-    //   alert('Please enter a valid email address.');
-    //   return false;
-    // }
-  
-    return true;1
+    return true;
   }
   
   validateEmail(email: string): boolean {
