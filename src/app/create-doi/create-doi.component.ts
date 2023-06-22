@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { showMoreFlatNode } from '../community-list-page/community-list-service';
+import { Component, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
@@ -7,12 +8,43 @@ import { showMoreFlatNode } from '../community-list-page/community-list-service'
   styleUrls: ['./create-doi.component.scss']
 })
 export class CreateDoiComponent {
-
+  constructor(private http: HttpClient) { }
   //Dropdown values
   secondaryOptionValues: string[] = [];
+  
+  authors: any[] = [];
+  authorData = {
+    firstName: '',
+    lastName: '',
+    initials: '',
+    affiliation: '',
+    email: '',
+    orchid: '',
+    id : Date.now().toString(),
+    checked: false
+  };
+
+  release: any[] = [];
+  releaseData = {
+    download:'',
+    description:'',
+    id : Date.now().toString(),
+    checked: false
+  };
+
+  community: string;
+  link: string;
+  location2: string;
+  title: string;
+  abstract: string;
+  collection: string;
+  date: string;
+  resource: string;
+  doi: string;
+  upgrade1: string;
 
   secondaryOptions = {
-    option1: ["Continuum Images",
+    MeerKAT: ["Continuum Images",
     "Visibility Data",
     "Calibration Tables",
     "Reports on Image Quality",
@@ -24,26 +56,36 @@ export class CreateDoiComponent {
     "Sensor Data",
     "Serendipitous Discovery Data",
     "Ancillary Data"],
-    option2: ["Single dish",
+    HartRAO_15m_telescope: ["Single dish",
     "Radio continuum",
     "Spectroscopy",
     "VLBI"],
-    option3: [ "Single dish",
+    HartRAO_26m_telescope: [ "Single dish",
     "Radio continuum",
     "Spectroscopy",
     "VLBI"]
   };
+
+  updateCollection(e){
+    this.collection = e.target.value
+  }
   updateSecondaryOptions(primaryOption: string) {
     this.secondaryOptionValues = this.secondaryOptions[primaryOption] || [];
+
   }
 
   //Control to show  Fill in author table
   showFiles: string = '';
+  isUpgradeHidden = true;
 
-  enableGenerate1(answer: string) {
-    console.log(answer);
-    console.log(typeof(answer))
-    console.log(answer.length)
+  enableGenerate1(value: string) {
+    if (value === '1') {
+      this.isUpgradeHidden = false;
+    } else {
+      this.isUpgradeHidden = true;
+    }
+  }
+  enableGenerate(answer: string) {
     if (answer === '2') {
       this.showFiles = '2';
     } else if(answer === '3'){
@@ -52,6 +94,55 @@ export class CreateDoiComponent {
     } else {
       this.showFiles = '';
     }
+  }
+  
+
+  submitForm() {
+    const formData = {
+      title: this.title,
+      community: this.community,
+      collection: this.collection,
+      resource: this.resource,
+      DOI: this.doi,
+      authors: this.authors,
+      abstract: this.abstract,
+      Published_date: this.date,
+      Location: this.location2,
+      paperLink: this.link,
+      release:this.release,
+      upgrade: this.upgrade1
+    };
+
+    console.log(formData)
+    var currentHostname = window.location.hostname;
+    var action_url = '';
+    this.validateForm()
+    if (currentHostname === 'dspace.sdp.kat.ac.za') {
+      action_url = 'http://dspace.sdp.kat.ac.za:8069';
+    } else {
+  // default 
+      alert('currentHostname')
+      action_url = 'http://127.0.0.1:8000';
+    }
+   
+    this.http.post(action_url, formData)
+      .subscribe(
+        response => {
+          console.log('Form submitted successfully!', response);
+          this.authors = this.authors.filter(author => !this.selectedRows.includes(author.id));
+          this.release = this.release.filter(entry => !this.selectedRelease.includes(entry.id));
+          // Handle success response
+        },
+        error => {
+          console.error('Error submitting form:', error);
+          this.myForm.reset()
+          // Handle error response
+        }
+      )
+      this.authors = this.authors.filter(author => this.selectedRows.includes(author.id));
+      this.release = this.release.filter(entry => this.selectedRelease.includes(entry.id));
+      this.selectedRelease = [];
+      this.selectedRows = [];
   }
   isStringEmpty(str: string): boolean {
     return str.length === 0;
@@ -71,80 +162,128 @@ export class CreateDoiComponent {
   }
   ngOnInit() {
     // Set the initial value to ""
-    this.enableGenerate1("");
+    this.enableGenerate("");
   }
   
   rows: any[] = [];
-  selectedRows: any[] = [];
+  selectedRows: string[] = [];
+  selectedRelease: string[] = [];
 
   addAuthor() {
-    const newRow = {
+      this.authors.push({ ...this.authorData });
+      this.clearForm();
+      this.authorData = {
+        firstName: '',
+        lastName: '',
+        initials: '',
+        affiliation: '',
+        email: '',
+        orchid: '',
+        id: Date.now().toString(),
+        checked: false
+      }
+      console.log(this.authors)
+  }
+  clearForm() {
+    this.authorData = {
       firstName: '',
       lastName: '',
       initials: '',
       affiliation: '',
       email: '',
-      orchid: ''
+      orchid: '',
+      id: Date.now().toString(),
+      checked: false
     };
-    this.rows.push(newRow);
   }
-
   deleteAuthor() {
-    this.selectedRows.forEach(row => {
-      const index = this.rows.indexOf(row);
-      if (index !== -1) {
-        this.rows.splice(index, 1); // Remove the selected row from the rows array
-      }
-    });
-
-    this.selectedRows = []; // Clear the selectedRows array
-  }
-
-  selectRow(row: any) {
-    if (this.selectedRows.includes(row)) {
-      const index = this.selectedRows.indexOf(row);
-      if (index !== -1) {
-        this.selectedRows.splice(index, 1); // Deselect the row
-      }
-    } else {
-      this.selectedRows.push(row); // Select the row
-    }
-  }
-
-  // Reports buttons
-  dataTableRows: any[] = [];
-
-  addRow(): void {
-    this.dataTableRows.push({ download: '', description: '' });
-  }
-
-  deleteRow () {
-    this.selectedRows.forEach(row => {
-      const index = this.rows.indexOf(row);
-      if (index !== -1) {
-        this.rows.splice(index, 1); // Remove the selected row from the rows array
-      }
-    });
-
+    console.log(this.selectedRows)
+    this.authors = this.authors.filter(author => !this.selectedRows.includes(author.id));
+    console.log(this.authors)
     this.selectedRows = [];
   }
 
+  deleteRow () {
+    console.log(this.selectedRelease)
+    this.release = this.release.filter(entry => !this.selectedRelease.includes(entry.id));
+    console.log(this.release)
+    //clear list after deleting
+    this.selectedRelease = [];
+  }
+  // Reports buttons
+  dataTableRows: any[] = [];
+
+  updateChecked(event: any, id: string): void {
+    console.log('id',event, id)
+    if (event.target.checked) {
+      // If the checkbox is checked, add the author's ID to the selected authors
+      this.selectedRows.push(id);
+    } else {
+      // If the checkbox is unchecked, remove the author's ID from the selected authors
+      const index = this.selectedRows.indexOf(id);
+      if (index > -1) {
+        this.selectedRows.splice(index, 1);
+      }
+    }
+    console.log('Selected',this.selectedRows)
+  }
+  updateSelected(event: any, id: string): void {
+    console.log('id',event, id)
+    if (event.target.checked) {
+      // If the checkbox is checked, add the author's ID to the selected authors
+      this.selectedRelease.push(id);
+    } else {
+      // If the checkbox is unchecked, remove the author's ID from the selected authors
+      const index = this.selectedRelease.indexOf(id);
+      if (index > -1) {
+        this.selectedRelease.splice(index, 1);
+      }
+    }
+    console.log('Selected',this.selectedRelease)
+  }
+  addRow() {
+      this.release.push({ ...this.releaseData });
+      this.clearRow();
+      this.releaseData = {
+        download:'',
+        description:'',
+        checked: false,
+        id : Date.now().toString(),
+      }
+  }
+  clearRow() {
+    this.releaseData = {
+      download: '',
+      description: '',
+      checked: false,
+      id : Date.now().toString(),
+    };
+  }
+
+  
+
   // Form Validation
-  frname: string;
+  firstName: string;
   email: string;
+  @ViewChild('myForm') myForm!: NgForm;
+
   validateForm(): boolean {
-  
-    if (!this.frname || !this.email) {
-      alert('Please fill out all required fields.');
-      return false;
+
+    if (!this.myForm.valid) {
+      alert('Form is not valid')
+      return;
     }
+    // if (!this.firstName || !this.email) {
+    //   alert('Please fill out all required fields.');
+    //   return false;
+    // }
   
-    if (!this.validateEmail(this.email)) {
-      alert('Please enter a valid email address.');
-      return false;
-    }
+    // if (!this.validateEmail(this.email)) {
+    //   alert('Please enter a valid email address.');
+    //   return false;
+    // }
   
-    return true;
+    return true;1
   }
   
   validateEmail(email: string): boolean {
