@@ -130,10 +130,11 @@
         ><br />
         <select
           id="Auths"
+          placeholder="--Upload file or Fill in details--" 
           (change)="enableGenerate($event.target.value)"
           required
         >
-          <option value="" [class.d-none]="showFiles === ''">--Upload file or Fill in details--</option>
+          <!-- <option value="" [class.d-none]="showFiles === ''">--Upload file or Fill in details--</option> -->
           <option value="2">Fill in author details</option>
           <br/>
           <option value="3">Upload file with author details</option></select
@@ -215,21 +216,19 @@
         ></textarea>
         <br />
         <label for="Published_date"
-          >Published date: <span class="required"> * </span></label
+          >Published date: <span>  </span></label
         >
         <br />
         <input
           type="date"
           max="3000-01-01"
-          onfocus="this.max=new Date().toISOString().split('T')[0]"
           name="Published_date"
           [(ngModel)]="date"
-          required
         />
         <br />
 
         <label for="Location"
-          >Location of data on CEPH: <span class="required"> * </span></label
+          >Location of data: <span class="required"> * </span></label
         ><br />
         <input
           type="text"

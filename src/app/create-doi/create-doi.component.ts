@@ -64,7 +64,22 @@ export class CreateDoiComponent {
     HartRAO_26m_telescope: [ "Single dish",
     "Radio continuum",
     "Spectroscopy",
-    "VLBI"]
+    "VLBI"],
+
+    DORIS_Doppler_satellite_racking_system:[],
+    GNSS_Reference_stations:["Beidou",
+    "Galileo",
+    "Global Orbiting Navigation Satellite System (GLONASS)",
+    "Global Positioning Systems (GPS)",
+    "Precipitable Water Vapor (PWV) system",
+    "Total Electron Content (TEC) system"
+    ],
+    Meteorology_instrumentation:[],
+    Moblas_6_Satellite_Laser_Ranger:[],
+    ROSCOSMOS_Satellite_Laser_Ranger:[],
+    Seismology_and_gravimetry_instrumentation:[],
+    Tide_Gauges:[],
+    Total_station_instrumentation:[],
   };
 
   updateCollection(e){

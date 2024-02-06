@@ -31,12 +31,13 @@ describe('BrowseBySwitcherComponent', () => {
         dataType: BrowseByDataType.Metadata,
       }
     ),
-    Object.assign(
-      new BrowseDefinition(), {
-        id: 'subject',
-        dataType: BrowseByDataType.Metadata,
-      }
-    ),
+    // Remove Browse by Subject?
+    // Object.assign(
+    //   new BrowseDefinition(), {
+    //     id: 'subject',
+    //     dataType: BrowseByDataType.Metadata,
+    //   }
+    // ),
   ];
 
   const data = new BehaviorSubject(createDataWithBrowseDefinition(new BrowseDefinition()));

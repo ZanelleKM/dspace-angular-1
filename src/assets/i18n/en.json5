@@ -2846,7 +2846,9 @@
 
   "nav.search": "Search",
 
-  "nav.statistics.header": "About Us",
+  "nav.statistics.header": "Statistics",
+
+  "nav.about.header": "About Us",
 
   "nav.stop-impersonating": "Stop impersonating EPerson",
 
@@ -3657,7 +3659,7 @@
 
   "statistics.table.title.TotalVisits": "statictics",
 
-
+  "statistics.table.title.TopCities": "Top city views",
 
 // About!
   "about.title": "About Us",
