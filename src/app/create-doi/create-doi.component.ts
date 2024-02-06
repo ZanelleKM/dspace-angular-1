@@ -65,7 +65,6 @@ export class CreateDoiComponent {
     "Radio continuum",
     "Spectroscopy",
     "VLBI"],
-
     DORIS_Doppler_satellite_racking_system:[],
     GNSS_Reference_stations:["Beidou",
     "Galileo",
