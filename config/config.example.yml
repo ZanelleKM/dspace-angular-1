@@ -230,7 +230,7 @@ themes:
         href: assets/dspace/images/favicons/favicon.svg
         type: image/svg+xml
     - tagName: link
-     lang attributes:
+      lang attributes:
         rel: apple-touch-icon
         href: assets/dspace/images/favicons/apple-touch-icon.png
     - tagName: link

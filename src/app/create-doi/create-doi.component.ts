@@ -55,7 +55,8 @@ export class CreateDoiComponent {
     "Automated Images",
     "Sensor Data",
     "Serendipitous Discovery Data",
-    "Ancillary Data"],
+    "Ancillary Data"
+    ],
     HartRAO_15m_telescope: ["Single dish",
     "Radio continuum",
     "Spectroscopy",
@@ -112,14 +113,14 @@ export class CreateDoiComponent {
       release:this.release,
       upgrade: this.upgrade1
     };
+    console.log('Form Data on Submit', formData)
     var currentHostname = window.location.hostname;
     var action_url = '';
+    console.log('Form Data', formData)
     if(this.validateForm(formData)){
       if (currentHostname === 'dspace.sdp.kat.ac.za') {
         action_url = 'http://dspace.sdp.kat.ac.za:8069';
       } else {
-    // default 
-        alert(currentHostname)
         action_url = 'https://httpbin.org/post';
       }
      
@@ -131,6 +132,7 @@ export class CreateDoiComponent {
           },
           error => {
             console.error('Error submitting form:', error);
+            console.error('Error submitting form:', error.status);
           }
         )
         this.authors = this.authors.filter(author => this.selectedRows.includes(author.id));
@@ -292,7 +294,9 @@ export class CreateDoiComponent {
   @ViewChild('myForm') myForm!: NgForm;
 
   validateForm(obj): boolean {
+    console.log('Object', obj)
     for (const key in obj) {
+      console.log('Key', key)
       if (key === "upgrade") {
         continue; // Skip the specific key to ignore
       }

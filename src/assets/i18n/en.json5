@@ -2586,8 +2586,6 @@
 
   "menu.section.browse_global_by_dateissued": "By Issue Date",
 
-  "menu.section.browse_global_by_subject": "By Subject",
-
   "menu.section.browse_global_by_title": "By Title",
 
   "menu.section.browse_global_communities_and_collections": "Communities & Collections",
@@ -3647,7 +3645,6 @@
 
   "sorting.lastModified.DESC": "Last modified Descending",
 
-
   "statistics.title": "Statistics",
 
   "statistics.header": "Statistics for {{ scope }}",
@@ -3674,15 +3671,15 @@
 
   "help.breadcrumbs": "Help Guide",
 
-  // "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
-  //
-  // "statistics.table.title.TotalDownloads": "File Visits",
-  //
-  // "statistics.table.title.TopCountries": "Top country views",
-  //
-  // "statistics.table.title.TopCities": "Top city views",
-  //
-  // "statistics.table.header.views": "Views",
+  "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
+  
+  "statistics.table.title.TotalDownloads": "File Visits",
+
+  "statistics.table.title.TopCountries": "Top country views",
+
+  "statistics.table.title.TopCities": "Top city views",
+  
+  "statistics.table.header.views": "Views",
 
 
 
