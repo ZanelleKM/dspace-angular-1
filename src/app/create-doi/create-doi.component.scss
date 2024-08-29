@@ -104,11 +104,12 @@
     width: 20%;
   }
   .right1 {
-    width: 17%;
+    width: 45%;
   }
 
   .middle {
-    width: 63%;
+    width: 55%;
+    padding-left: 15%;
   }
 
   /* Clear floats after the columns */
@@ -194,3 +195,7 @@
     padding: 25px;
   }
   p.solid {border-style: solid;}
+  .button-space {
+    margin-right: 10px; /* Adjust the value to increase or decrease the spacing */
+  }
+  

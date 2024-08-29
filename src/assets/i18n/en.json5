@@ -980,7 +980,6 @@
 
   "collection.page.edit": "Edit this collection",
 
-  // "collection.page.handle": "Permanent URI for this collection",
 
   "collection.page.license": "License",
 
@@ -1188,8 +1187,6 @@
   "community.form.title": "Name",
 
   "community.page.edit": "Edit this community",
-
-  "community.page.handle": "Permanent URI for this community",
 
   "community.page.license": "License",
 
@@ -2581,15 +2578,13 @@
 
   "menu.section.browse_global_about": "About Us",
 
-  "menu.section.browse_global_create-doi": "Create Doi",
+  "menu.section.browse_global_create-doi": "Request or Update DOI",
 
   "menu.section.browse_global_help": "Help Guide",
 
   "menu.section.browse_global_by_author": "By Author",
 
   "menu.section.browse_global_by_dateissued": "By Issue Date",
-
-  "menu.section.browse_global_by_subject": "By Subject",
 
   "menu.section.browse_global_by_title": "By Title",
 
@@ -2709,7 +2704,7 @@
 // About Us Menu option
   "menu.section.about": "About Us",
 
-  "menu.section.create-doi": "Create Doi",
+  "menu.section.create-doi": "Request or Update DOI",
 
   "menu.section.help": "Help Guide",
 
@@ -2851,7 +2846,9 @@
 
   "nav.search": "Search",
 
-  "nav.statistics.header": "About Us",
+  "nav.statistics.header": "Statistics",
+
+  "nav.about.header": "About Us",
 
   "nav.stop-impersonating": "Stop impersonating EPerson",
 
@@ -3650,7 +3647,6 @@
 
   "sorting.lastModified.DESC": "Last modified Descending",
 
-
   "statistics.title": "Statistics",
 
   "statistics.header": "Statistics for {{ scope }}",
@@ -3663,7 +3659,7 @@
 
   "statistics.table.title.TotalVisits": "statictics",
 
-
+  "statistics.table.title.TopCities": "Top city views",
 
 // About!
   "about.title": "About Us",
@@ -3671,21 +3667,21 @@
   "about.breadcrumbs": "About Us",
   
 
-  "create-doi.breadcrumbs": "Create Doi",
+  "create-doi.breadcrumbs": "Request or Update DOI",
 
   "help.title": "Help Guide",
 
   "help.breadcrumbs": "Help Guide",
 
-  // "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
-  //
-  // "statistics.table.title.TotalDownloads": "File Visits",
-  //
-  // "statistics.table.title.TopCountries": "Top country views",
-  //
-  // "statistics.table.title.TopCities": "Top city views",
-  //
-  // "statistics.table.header.views": "Views",
+  "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
+  
+  "statistics.table.title.TotalDownloads": "File Visits",
+
+  "statistics.table.title.TopCountries": "Top country views",
+
+  "statistics.table.title.TopCities": "Top city views",
+  
+  "statistics.table.header.views": "Views",
 
 
 
@@ -4386,24 +4382,6 @@
   "submission.workspace.generic.view": "View",
 
   "submission.workspace.generic.view-help": "Select this option to view the item's metadata.",
-
-
-  "thumbnail.default.alt": "Thumbnail Image",
-
-  "thumbnail.default.placeholder": "No Thumbnail Available",
-
-  "thumbnail.project.alt": "Project Logo",
-
-  "thumbnail.project.placeholder": "Project Placeholder Image",
-
-  "thumbnail.orgunit.alt": "OrgUnit Logo",
-
-  "thumbnail.orgunit.placeholder": "OrgUnit Placeholder Image",
-
-  "thumbnail.person.alt": "Profile Picture",
-
-  "thumbnail.person.placeholder": "No Profile Picture Available",
-
 
 
   "title": "DSpace",

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,65 +13,56 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="row">
-        <div class="column left" style="background-color: white">
-          <a href="#"
-            ><img
-              src="../../assets/images/sarao-logo.png"
-              width="200"
-              style="padding: 15px"
-          /></a>
-        </div>
-        <div class="column middle" style="background-color: white">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white"> -->
+      <nav class="navbar  navbar-light bg-white">
+      <!-- <div class="row"> -->
+        <div  class="middle">
           <h1>Metadata For Data or Report Release</h1>
           <p class="para">
             The information collected using this form will be used to generate a
             DOI on Datacite and add the metadata to the SARAO repository.
           </p>
         </div>
-
-        <div
-          class="column3 right1 center"
-          style="padding-left: 80px"
-          style="padding-top: 100px"
-          style="background-color: white"
-        >
+        <div class="right">
           <ul>
             <li>
               <a
                 href="../../assets/pdf/About_Fields (1).pdf"
-                style="padding-bottom: 0%"
-                width="50"
                 >About fields</a
               ><br />
             </li>
             <li>
               <a
-                href="https://skaafrica.atlassian.net/servicedesk/customer/portals/"
-                style="padding-bottom: 0%"
-                width="50"
+                href="https://skaafrica.atlassian.net/servicedesk/customer/portals/" 
                 >Contact us</a
               >
             </li>
           </ul>
         </div>
-      </div>
+      <!-- </div> -->
     </nav>
     <div class="container-main bg-3 text-center">
       <h3>Please fill in the following fields</h3>
       <br />
-      <form action="http://127.0.0.1:8000" name="forms" id="forms">
-        <label for="generate"
-          >Create or Update DOI: <span class="required"> * </span></label
+      <form name="forms" id="forms"   #myForm="ngForm" (ngSubmit)="submitForm();">
+        <!-- <label for="generate"
+          >Request or Update DOI: <span class="required"> * </span></label
         ><br />
-        <select id="generate" onchange="enableGenerate(this)" required>
-          <option value="">Create a new DOI or update an existing DOI</option>
-          <option value="0">Create</option>
+        <select id="generate" onchange="enableGenerate(this)" [(ngModel)]="doi" required >
+          <option value="">Request a new DOI or update an existing DOI</option>
+          <option value="0">Request</option>
+          <option value="1">Update</option>
+        </select> -->
+        <label for="generate"
+          >Request or Update DOI: <span class="required"> * </span></label
+        ><br />
+        <select id="generate" name="Doi" (change)="enableGenerate1($event.target.value)" [(ngModel)]="doi" required>
+          <option value="">Request a new DOI or update an existing DOI</option>
+          <option value="0">Request</option>
           <option value="1">Update</option>
         </select>
         <br />
-        <label for="upgrade1" id="upgrade" class="d-none"
+        <label for="upgrade1" id="upgrade" [class.d-none]="isUpgradeHidden"
           >DOI to upgrade: <span class="required"> * </span></label
         ><br />
         <input
@@ -78,90 +70,50 @@
           id="upgrade1"
           maxlength="9"
           size="10"
-          class="d-none"
+          [class.d-none]="isUpgradeHidden"
           name="upgrade1"
+          [(ngModel)]="upgrade1"
         />
         <br />
-        <script type="text/javascript">
-          function enableGenerate(answer) {
-            console.log(answer.value);
-            if (answer.value == 1) {
-              document.getElementById("upgrade").classList.remove("d-none");
-              document.getElementById("upgrade1").classList.remove("d-none");
-            } else {
-              document.getElementById("upgrade").classList.add("d-none");
-            }
-          }
-        </script>
-        <label for="Community"
+        <label for="primaryOptions"
           >Community: <span class="required"> * </span></label
-        ><br />
-        <select name="Community" id="typeSel" size="1" required>
-          <option value="" selected="selected">Select Community</option>
+        >
+        <br />
+        <select
+          id="primaryOptions"
+          (change)="updateSecondaryOptions($event.target.value)"
+          name="country"
+          [(ngModel)]="community"
+        >
+          <option value="">-- Select --</option>
+          <option value="MeerKAT">MeerKAT</option>
+          <option value="HartRAO_15m_telescope">HartRAO_15m_telescope</option>
+          <option value="HartRAO_26m_telescope">HartRAO_26m_telescope</option>
+          <option value="DORIS_Doppler_satellite_racking_system">DORIS_Doppler_satellite_racking_system</option>
+          <option value="GNSS_Reference_stations">GNSS_Reference_stations</option>
+          <option value="Meteorology_instrumentation">Meteorology_instrumentation</option>
+          <option value="Moblas_6_Satellite_Laser_Ranger">Moblas_6_Satellite_Laser_Ranger</option>
+          <option value="ROSCOSMOS_Satellite_Laser_Ranger">ROSCOSMOS_Satellite_Laser_Ranger</option>
+          <option value="Seismology_and_gravimetry_instrumentation">Seismology_and_gravimetry_instrumentation</option>
+          <option value="Tide_Gauges">Tide_Gauges</option>
+          <option value="Total_station_instrumentation">Total_station_instrumentation</option>
         </select>
         <br />
-        <label for="Collection"
-          >Collections: <span class="required"> * </span></label
-        ><br />
-        <select name="Collection" id="fieldSel" size="1" required>
-          <option value="Collection" selected="selected">
-            Select Collection
+        <label for="secondaryOptions"
+          >Collection: <span class="required"> * </span></label
+        >
+        <br />
+        <select id="secondaryOptions" (change)="updateCollection($event)"  >
+          <option value="">-- Select --</option>
+          <option name="collection"  *ngFor="let option of secondaryOptionValues" [value]="option" [(ngModel)]="collection">
+            {{ option }}
           </option>
         </select>
-        <script>
-          var typeObject = {
-            MeerKAT: [
-              "Continuum Images",
-              "Visibility Data",
-              "Calibration Tables",
-              "Reports on Image Quality",
-              "Spectral Line Cubes",
-              "Beam-formed modes",
-              "Pulsar Timing Data",
-              "Rapid Timing Transients",
-              "Automated Images",
-              "Sensor Data",
-              "Serendipitous Discovery Data",
-              "Ancillary Data",
-            ],
-            HartRAO_15m_telescope: [
-              "Single dish",
-              "Radio continuum",
-              "Spectroscopy",
-              "VLBI",
-            ],
-            HartRAO_26m_telescope: [
-              "Single dish",
-              "Radio continuum",
-              "Spectroscopy",
-              "VLBI",
-            ],
-          };
-          window.onload = function () {
-            var typeSel = document.getElementById("typeSel"),
-              fieldSel = document.getElementById("fieldSel");
-            for (var type in typeObject) {
-              typeSel.options[typeSel.options.length] = new Option(type, type);
-            }
-            typeSel.onchange = function () {
-              fieldSel.length = 1; // remove all options bar first
-              if (this.selectedIndex < 1) return; // done
-              var ft = typeObject[this.value];
-              for (var field in typeObject[this.value]) {
-                fieldSel.options[fieldSel.options.length] = new Option(
-                  ft[field],
-                  field
-                );
-              }
-            };
-            typeSel.onchange();
-          };
-        </script>
         <br />
         <label for="Resource"
           >Resource type: <span class="required"> * </span></label
         ><br />
-        <select id="Resource" name="Resource" placeholder="--select--" required>
+        <select id="Resource" name="Resource" placeholder="--select--"  [(ngModel)]="resource" required>
           <option value="Dataset">Dataset</option>
           <option value="Report">Report</option>
           <option value="Report">Other</option>
@@ -177,93 +129,73 @@
           minlength="1"
           size="10"
           name="Title"
+          [(ngModel)]="title"
           required
-        /><br />
+        /><br/>
         <label for="Auths"
           >Upload file containing author names or manually insert author
           details? <span class="required"> * </span></label
         ><br />
-        <select id="Auths" onchange="enableGenerate1(this)" required>
-          <option value="">Upload file or Fill in details</option>
+        <select
+          id="Auths"
+          placeholder="--Upload file or Fill in details--" 
+          (change)="enableGenerate($event.target.value)"
+          required
+        >
+          <!-- <option value="" [class.d-none]="showFiles === ''">--Upload file or Fill in details--</option> -->
           <option value="2">Fill in author details</option>
+          <br/>
           <option value="3">Upload file with author details</option></select
         ><br />
 
-        <div id="filesys" class="d-none">
-          <label id="files" for="exampleFormControlFile1"
-            >File containing authors' details</label
-          ><br />
-          <br /><input id="files" type="file" class="center" name="files" />
+        <div id="filesys" *ngIf="!isStringEmpty(showFiles)" [class.d-none]="showFiles === '2'"> <br>
+          <input id="files" type="file"  class="center" name="files" />
         </div>
-        <script type="text/javascript">
-          function enableGenerate1(answer) {
-            console.log(answer.value);
-            if (answer.value == 3) {
-              document.getElementById("filesys").classList.remove("d-none");
-              document.getElementById("dataTable1").classList.add("d-none");
-              document.getElementById("addAuth").classList.add("d-none");
-              document.getElementById("delAuth").classList.add("d-none");
-            } else {
-              document.getElementById("dataTable1").classList.remove("d-none");
-              document.getElementById("filesys").classList.add("d-none");
-              document.getElementById("addAuth").classList.remove("d-none");
-              document.getElementById("delAuth").classList.remove("d-none");
-            }
-          }
-        </script>
-        <SCRIPT language="javascript">
-          function addRow1(tableID) { var defaultConstructorArray=new Array();
-          var table = document.getElementById(tableID); var rowCount =
-          table.rows.length; var row = table.insertRow(rowCount); var cell1 =
-          row.insertCell(0); var element1 = document.createElement("input");
-          element1.type = "checkbox"; element1.name="chkbox[]";
-          cell1.appendChild(element1); defaultConstructorArray.push(element1);
-          var cell2= row.insertCell(1); var element2 =
-          document.createElement("input"); element2.type = "text"; element2.name
-          = "txtbox[]"; cell2.appendChild(element2);
-          defaultConstructorArray.push(element2); var cell3 = row.insertCell(2);
-          var element3 = document.createElement("input"); element3.type =
-          "text"; element3.name = "txtbox[]"; cell3.appendChild(element3);
-          defaultConstructorArray.push(element3); var cell4 = row.insertCell(3);
-          var element4 = document.createElement("input"); element4.type =
-          "text"; element4.name = "txtbox[]"; cell4.appendChild(element4);
-          defaultConstructorArray.push(element4); var cell5 = row.insertCell(4);
-          var element5 = document.createElement("input"); element5.type =
-          "text"; element5.name = "txtbox[]"; cell5.appendChild(element5);
-          defaultConstructorArray.push(element5); var cell6 = row.insertCell(5);
-          var element6 = document.createElement("input"); element6.type =
-          "text"; element6.name = "txtbox[]"; cell6.appendChild(element6);
-          defaultConstructorArray.push(element6); var cell7 = row.insertCell(6);
-          var element7 = document.createElement("input"); element7.type =
-          "text"; element7.name = "txtbox[]"; cell7.appendChild(element7);
-          defaultConstructorArray.push(element7); } function deleteRow1(tableID)
-          { try { var table = document.getElementById(tableID); var rowCount =
-          table.rows.length; for(var i=0; i<rowCount; i++) { var row =
-          table.rows[i]; var chkbox = row.cells[0].childNodes[0]; if(null !=
-          chkbox && true == chkbox.checked) { table.deleteRow(i); rowCount--;
-          i--; } } }catch(e) { alert(e); } }
-        </SCRIPT>
-        <TABLE class="d-none center" id="dataTable1" width="350px" border="2">
-          <TR>
-            <th for="fname"></th>
-            <th name="frname" required>First name</th>
-            <th name="lname" required>Last name</th>
-            <th for="Initials" name="Initials" required>Initials</th>
-            <th for="Affiliation" required>Affiliation</th>
-            <th for="Email">Email</th>
-            <th for="ORCHIDs" required>ORCHID</th></TR
-          ><br />
+        <br/>
+        <div *ngIf="isStringEmpty(showFiles)">
+        </div>
+        
+        <table
+          class="center"
+          id="dataTable1"
+          *ngIf="!isStringEmpty(showFiles)" 
+          [class.d-none]="showFiles === '3'"
+          width="350px"
+          border="2"
+        >
 
-          <TD><INPUT type="checkbox" name="chk" /></TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
-          <TR> </TR
-        ></TABLE>
-
+        <tr class="author-tiles">
+              <td></td>
+              <td><strong>First Name</strong></td>
+              <td><strong>Last Name</strong></td>
+              <td><strong>Initials</strong></td>
+              <td><strong>Email</strong></td>
+              <td><strong>Affiliation</strong></td>
+              <td><strong>Orchid</strong></td>
+            </tr>
+          
+          <tr class="author-tile" *ngFor="let author of authors">
+              <td><input type="checkbox" name="chk" [(ngModel)]="author.checked" (change)="updateChecked($event,author.id)"/></td>
+              <td>{{ author.firstName }}</td>
+              <td>{{ author.lastName }}</td>
+              <td>{{ author.initials }}</td>
+              <td>{{ author.email }}</td>
+              <td>{{ author.affiliation }}</td>
+              <td>{{ author.orchid }}</td>
+        </tr>
+          <tr >
+            <td><input type="checkbox" name="checked" /></td>
+            <td><input type="text" name="firstName" [(ngModel)]="authorData.firstName"   required></td>
+            <td><input type="text" name="firstName" [(ngModel)]="authorData.lastName" required></td>
+            <td><input type="text" name="initials" [(ngModel)]="authorData.initials" required></td>
+            <td><input type="text" name="email" [(ngModel)]="authorData.email" required></td>
+            <td><input type="text" name="affiliation" [(ngModel)]="authorData.affiliation" required></td>
+            <td><input type="text" name="orchid" [(ngModel)]="authorData.orchid" required></td>
+          </tr>
+        </table> <br>
+        <input id="addAuth" class="innerborder d-none" type="button" *ngIf="!isStringEmpty(showFiles)" [class.d-none]="showFiles === '3'" (click)="addAuthor()" value="Add Author" />
+        <span class="button-space"></span>
+        <input id="delAuth" class="innerborder d-none" type="button" *ngIf="!isStringEmpty(showFiles)" [class.d-none]="showFiles === '3'"(click)="deleteAuthor()" value="Delete Author"/>
         <br /><INPUT
           id="addAuth"
           class="innerborder d-none"
@@ -287,24 +219,24 @@
           name="Abstract"
           type="text"
           placeholder="Enter details here"
+          [(ngModel)]="abstract"
           required
         ></textarea>
         <br />
         <label for="Published_date"
-          >Published date: <span class="required"> * </span></label
+          >Published date: <span>  </span></label
         >
         <br />
         <input
           type="date"
           max="3000-01-01"
-          onfocus="this.max=new Date().toISOString().split('T')[0]"
           name="Published_date"
-          required
+          [(ngModel)]="date"
         />
         <br />
 
         <label for="Location"
-          >Location of data on CEPH: <span class="required"> * </span></label
+          >Location of data: <span class="required"> * </span></label
         ><br />
         <input
           type="text"
@@ -312,6 +244,7 @@
           minlength="1"
           size="10"
           name="Location"
+          [(ngModel)]="location2" 
           required
         /><br />
         <br />
@@ -323,58 +256,40 @@
           minlength="1"
           size="10"
           name="paperLink"
+          [(ngModel)]="link" 
         /><br />
         <br />
 
         <br />
-        <label for="released"
+        <label for="release"
           >Data/Reports to be released:
-          <span class="required" name="released"> * </span> </label
+          <span class="required" name="release" ngDefaultControl [(ngModel)]="release"> * </span> </label
         ><br />
-        <SCRIPT language="javascript">
-          function addRow(tableID) { var table =
-          document.getElementById(tableID); var rowCount = table.rows.length;
-          var row = table.insertRow(rowCount); var cell1 = row.insertCell(0);
-          var element1 = document.createElement("input"); element1.type =
-          "checkbox"; element1.name="chkbox[]"; cell1.appendChild(element1); var
-          cell2 = row.insertCell(1); var element2 =
-          document.createElement("input"); element2.type = "text"; element2.name
-          = "txtbox[]"; cell2.appendChild(element2); var cell3 =
-          row.insertCell(2); var element3 = document.createElement("input");
-          element3.type = "text"; element3.name = "txtbox[]";
-          cell3.appendChild(element3); } function deleteRow(tableID) { try { var
-          table = document.getElementById(tableID); var rowCount =
-          table.rows.length; for(var i=0; i<rowCount; i++) { var row =
-          table.rows[i]; var chkbox = row.cells[0].childNodes[0]; if(null !=
-          chkbox && true == chkbox.checked) { table.deleteRow(i); rowCount--;
-          i--; } } }catch(e) { alert(e); } }
-        </SCRIPT>
-        <TABLE class="center" id="dataTable" width="350px" border="2">
-          <TR>
-            <th for="fname"></th>
-            <th for="Download">Download</th>
-            <th for="Description">Description</th></TR
-          ><br />
+        <table class="center" id="dataTable" width="350px" border="2">
+          
+        <tr class="author-tile" id="dataTable" width="350px" border="2">
+          <td></td>
+          <td><strong>Download</strong></td>
+          <td><strong>Description</strong></td>
+        </tr>
+      
+      <tr class="author-tile" *ngFor="let entry of release">
+          <td><input type="checkbox" name="chk" [(ngModel)]="entry.checked" (change)="updateSelected($event, entry.id)"/></td>
+          <td>{{ entry.download }}</td>
+          <td>{{ entry.description }}</td>
+    </tr>
+      <tr >
+        <td><input type="checkbox" name="chk" /></td>
+        <td><input type="text" name="download" [(ngModel)]="releaseData.download" required></td>
+        <td><input type="text" name="description" [(ngModel)]="releaseData.description" required></td>
+      </tr>
+        </table>
+        <br />
+        <input id="addrow" class="innerborder" type="button" value="Add Row" (click)="addRow()">
+        <span class="button-space"></span>
+        <input id="delrow" class="innerborder" type="button" value="Delete Row" (click)="deleteRow()">
 
-          <TD><INPUT type="checkbox" name="chk" /></TD>
-          <TD> <INPUT type="text" class="insideblock" required /> </TD>
-          <TD> <INPUT type="text" class="insideblock" required /> </TD>
-          <TR> </TR
-        ></TABLE>
-        <br /><INPUT
-          id="addrow"
-          class="innerborder"
-          type="button"
-          value="Add Row"
-          onclick="addRow('dataTable')"
-        />
-        <INPUT
-          id="delrow"
-          class="innerborder"
-          type="button"
-          value="Delete Row"
-          onclick="deleteRow('dataTable')"
-        /><br />
+        <br />
         <SCRIPT>
           //check required fields function checkrRequired(inputArr) {
           inputArr.forEach(function(input) { if(input.value.trim() === '') {
@@ -385,9 +300,8 @@
           <button
             class="innerborder"
             id="submitBtn"
-            action="http://127.0.0.1:8000"
             type="submit"
-            onsubmit="return validateForm();"
+            onsubmit="validateForm()"
           >
             Submit
           </button>
@@ -395,39 +309,39 @@
         <br />
       </form>
       <script>
-        function validateForm() {
-          var name = document.getElementById("frname").value;
-          var email = document.getElementById("Email").value;
+        // function validateForm() {
+        //   var name = document.getElementById("firstname").value;
+        //   var email = document.getElementById("Email").value;
 
-          if (name == "" || email == "") {
-            alert("Please fill out all required fields.");
-            return false;
-          }
+        //   if (name == "" || email == "") {
+        //     alert("Please fill out all required fields.");
+        //     return false;
+        //   }
 
-          if (!validateEmail(email)) {
-            alert("Please enter a valid email address.");
-            return false;
-          }
+        //   if (!validateEmail(email)) {
+        //     alert("Please enter a valid email address.");
+        //     return false;
+        //   }
 
-          return true;
-        }
+        //   return true;
+        // }
 
-        function validateEmail(email) {
-          var re = /\S+@\S+\.\S+/;
-          return re.test(email);
-        }
+        // function validateEmail(email) {
+        //   var re = /\S+@\S+\.\S+/;
+        //   return re.test(email);
+        // }
       </script>
       <footer>
         <div class="container p-3">
           <div class="row">
             <div class="col-12 text-center">
               <span class="info"
-                ><br />The created DOI form will be uploaded on the Repository
+                ><br />The requested DOI form will be uploaded on the Repository
                 available at
                 <a
                   color="dark blue"
                   rel="website"
-                  href="http://dspace7.sdp.kat.ac.za"
+                  href="http://dspace.sdp.kat.ac.za"
                   >SARAO Repository</a
                 ></span
               >
