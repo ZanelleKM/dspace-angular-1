@@ -8,5 +8,25 @@ export const environment: Partial<BuildConfig> = {
     preboot: true,
     async: true,
     time: false
-  }
+  },
+  // The "ui" section defines where you want Node.js to run/respond. It often is a *localhost* (non-public) URL, especially if you are using a Proxy.
+  // In this example, we are setting up our UI to just use localhost, port 4000.
+  // This is a common setup for when you want to use Apache or Nginx to handle HTTPS and proxy requests to Node on port 4000
+  ui: {
+    ssl: false,
+    host: 'localhost',
+    port: 4000,
+    // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+    nameSpace: '/'
+},
+// This example is valid if your Backend is publicly available at https://api.mydspace.edu/server/
+// The REST settings MUST correspond to the primary URL of the backend. Usually, this means they must be kept in sync
+// with the value of "dspace.server.url" in the backend's local.cfg
+rest: {
+    ssl: true,
+    host: 'repository.sarao.ac.za',
+    port: 443,
+    // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+    nameSpace: '/server'
+}
 };
