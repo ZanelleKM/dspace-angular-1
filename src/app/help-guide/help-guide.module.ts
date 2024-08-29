@@ -1,20 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { AboutPageComponent } from './about-page.component';
-import { AboutPageRoutingModule } from './about-page.routing.module';
+import { HelpPageComponent } from './help-guide.component';
+import { HelpPageRoutingModule } from './help-guide.routing.module';
 
 const DECLARATIONS = [
-  AboutPageComponent,
 ];
-/**
- * The page which houses a title and the community list, as described in community-list.component
- */
+
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    AboutPageRoutingModule
+    HelpPageRoutingModule,
   ],
   declarations: [
     ...DECLARATIONS
@@ -23,5 +20,6 @@ const DECLARATIONS = [
     ...DECLARATIONS,
   ],
 })
-export class AboutPageModule {
+export class HelpPageModule {
+
 }

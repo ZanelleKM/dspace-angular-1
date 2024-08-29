@@ -140,7 +140,7 @@ const PROVIDERS = [
 ];
 
 const DECLARATIONS = [
-  AppComponent,
+  AppComponent
 ];
 
 const EXPORTS = [

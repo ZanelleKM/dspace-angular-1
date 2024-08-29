@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dspace DOI</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="row">
+        <div class="column left" style="background-color: white">
+          <a href="#"
+            ><img
+              src="../../assets/images/sarao-logo.png"
+              width="200"
+              style="padding: 15px"
+          /></a>
+        </div>
+        <div class="column middle" style="background-color: white">
+          <h1>Metadata For Data or Report Release</h1>
+          <p class="para">
+            The information collected using this form will be used to generate a
+            DOI on Datacite and add the metadata to the SARAO repository.
+          </p>
+        </div>
+
+        <div
+          class="column3 right1 center"
+          style="padding-left: 80px"
+          style="padding-top: 100px"
+          style="background-color: white"
+        >
+          <ul>
+            <li>
+              <a
+                href="../../assets/pdf/About_Fields (1).pdf"
+                style="padding-bottom: 0%"
+                width="50"
+                >About fields</a
+              ><br />
+            </li>
+            <li>
+              <a
+                href="https://skaafrica.atlassian.net/servicedesk/customer/portals/"
+                style="padding-bottom: 0%"
+                width="50"
+                >Contact us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-main bg-3 text-center">
+      <h3>Please fill in the following fields</h3>
+      <br />
+      <form action="http://127.0.0.1:8000" name="forms" id="forms">
+        <label for="generate"
+          >Create or Update DOI: <span class="required"> * </span></label
+        ><br />
+        <select id="generate" onchange="enableGenerate(this)" required>
+          <option value="">Create a new DOI or update an existing DOI</option>
+          <option value="0">Create</option>
+          <option value="1">Update</option>
+        </select>
+        <br />
+        <label for="upgrade1" id="upgrade" class="d-none"
+          >DOI to upgrade: <span class="required"> * </span></label
+        ><br />
+        <input
+          type="text"
+          id="upgrade1"
+          maxlength="9"
+          size="10"
+          class="d-none"
+          name="upgrade1"
+        />
+        <br />
+        <script type="text/javascript">
+          function enableGenerate(answer) {
+            console.log(answer.value);
+            if (answer.value == 1) {
+              document.getElementById("upgrade").classList.remove("d-none");
+              document.getElementById("upgrade1").classList.remove("d-none");
+            } else {
+              document.getElementById("upgrade").classList.add("d-none");
+            }
+          }
+        </script>
+        <label for="Community"
+          >Community: <span class="required"> * </span></label
+        ><br />
+        <select name="Community" id="typeSel" size="1" required>
+          <option value="" selected="selected">Select Community</option>
+        </select>
+        <br />
+        <label for="Collection"
+          >Collections: <span class="required"> * </span></label
+        ><br />
+        <select name="Collection" id="fieldSel" size="1" required>
+          <option value="Collection" selected="selected">
+            Select Collection
+          </option>
+        </select>
+        <script>
+          var typeObject = {
+            MeerKAT: [
+              "Continuum Images",
+              "Visibility Data",
+              "Calibration Tables",
+              "Reports on Image Quality",
+              "Spectral Line Cubes",
+              "Beam-formed modes",
+              "Pulsar Timing Data",
+              "Rapid Timing Transients",
+              "Automated Images",
+              "Sensor Data",
+              "Serendipitous Discovery Data",
+              "Ancillary Data",
+            ],
+            HartRAO_15m_telescope: [
+              "Single dish",
+              "Radio continuum",
+              "Spectroscopy",
+              "VLBI",
+            ],
+            HartRAO_26m_telescope: [
+              "Single dish",
+              "Radio continuum",
+              "Spectroscopy",
+              "VLBI",
+            ],
+          };
+          window.onload = function () {
+            var typeSel = document.getElementById("typeSel"),
+              fieldSel = document.getElementById("fieldSel");
+            for (var type in typeObject) {
+              typeSel.options[typeSel.options.length] = new Option(type, type);
+            }
+            typeSel.onchange = function () {
+              fieldSel.length = 1; // remove all options bar first
+              if (this.selectedIndex < 1) return; // done
+              var ft = typeObject[this.value];
+              for (var field in typeObject[this.value]) {
+                fieldSel.options[fieldSel.options.length] = new Option(
+                  ft[field],
+                  field
+                );
+              }
+            };
+            typeSel.onchange();
+          };
+        </script>
+        <br />
+        <label for="Resource"
+          >Resource type: <span class="required"> * </span></label
+        ><br />
+        <select id="Resource" name="Resource" placeholder="--select--" required>
+          <option value="Dataset">Dataset</option>
+          <option value="Report">Report</option>
+          <option value="Report">Other</option>
+        </select>
+        <br />
+
+        <label for="Title" id="myList"
+          >Title: <span class="required"> * </span></label
+        ><br />
+        <input
+          type="text"
+          id="Title"
+          minlength="1"
+          size="10"
+          name="Title"
+          required
+        /><br />
+        <label for="Auths"
+          >Upload file containing author names or manually insert author
+          details? <span class="required"> * </span></label
+        ><br />
+        <select id="Auths" onchange="enableGenerate1(this)" required>
+          <option value="">Upload file or Fill in details</option>
+          <option value="2">Fill in author details</option>
+          <option value="3">Upload file with author details</option></select
+        ><br />
+
+        <div id="filesys" class="d-none">
+          <label id="files" for="exampleFormControlFile1"
+            >File containing authors' details</label
+          ><br />
+          <br /><input id="files" type="file" class="center" name="files" />
+        </div>
+        <script type="text/javascript">
+          function enableGenerate1(answer) {
+            console.log(answer.value);
+            if (answer.value == 3) {
+              document.getElementById("filesys").classList.remove("d-none");
+              document.getElementById("dataTable1").classList.add("d-none");
+              document.getElementById("addAuth").classList.add("d-none");
+              document.getElementById("delAuth").classList.add("d-none");
+            } else {
+              document.getElementById("dataTable1").classList.remove("d-none");
+              document.getElementById("filesys").classList.add("d-none");
+              document.getElementById("addAuth").classList.remove("d-none");
+              document.getElementById("delAuth").classList.remove("d-none");
+            }
+          }
+        </script>
+        <SCRIPT language="javascript">
+          function addRow1(tableID) { var defaultConstructorArray=new Array();
+          var table = document.getElementById(tableID); var rowCount =
+          table.rows.length; var row = table.insertRow(rowCount); var cell1 =
+          row.insertCell(0); var element1 = document.createElement("input");
+          element1.type = "checkbox"; element1.name="chkbox[]";
+          cell1.appendChild(element1); defaultConstructorArray.push(element1);
+          var cell2= row.insertCell(1); var element2 =
+          document.createElement("input"); element2.type = "text"; element2.name
+          = "txtbox[]"; cell2.appendChild(element2);
+          defaultConstructorArray.push(element2); var cell3 = row.insertCell(2);
+          var element3 = document.createElement("input"); element3.type =
+          "text"; element3.name = "txtbox[]"; cell3.appendChild(element3);
+          defaultConstructorArray.push(element3); var cell4 = row.insertCell(3);
+          var element4 = document.createElement("input"); element4.type =
+          "text"; element4.name = "txtbox[]"; cell4.appendChild(element4);
+          defaultConstructorArray.push(element4); var cell5 = row.insertCell(4);
+          var element5 = document.createElement("input"); element5.type =
+          "text"; element5.name = "txtbox[]"; cell5.appendChild(element5);
+          defaultConstructorArray.push(element5); var cell6 = row.insertCell(5);
+          var element6 = document.createElement("input"); element6.type =
+          "text"; element6.name = "txtbox[]"; cell6.appendChild(element6);
+          defaultConstructorArray.push(element6); var cell7 = row.insertCell(6);
+          var element7 = document.createElement("input"); element7.type =
+          "text"; element7.name = "txtbox[]"; cell7.appendChild(element7);
+          defaultConstructorArray.push(element7); } function deleteRow1(tableID)
+          { try { var table = document.getElementById(tableID); var rowCount =
+          table.rows.length; for(var i=0; i<rowCount; i++) { var row =
+          table.rows[i]; var chkbox = row.cells[0].childNodes[0]; if(null !=
+          chkbox && true == chkbox.checked) { table.deleteRow(i); rowCount--;
+          i--; } } }catch(e) { alert(e); } }
+        </SCRIPT>
+        <TABLE class="d-none center" id="dataTable1" width="350px" border="2">
+          <TR>
+            <th for="fname"></th>
+            <th name="frname" required>First name</th>
+            <th name="lname" required>Last name</th>
+            <th for="Initials" name="Initials" required>Initials</th>
+            <th for="Affiliation" required>Affiliation</th>
+            <th for="Email">Email</th>
+            <th for="ORCHIDs" required>ORCHID</th></TR
+          ><br />
+
+          <TD><INPUT type="checkbox" name="chk" /></TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TD> <INPUT class="insideblock" type="text" name="array" /> </TD>
+          <TR> </TR
+        ></TABLE>
+
+        <br /><INPUT
+          id="addAuth"
+          class="innerborder d-none"
+          type="button"
+          value="Add Author"
+          onclick="addRow1('dataTable1')"
+        />
+        <INPUT
+          id="delAuth"
+          class="innerborder d-none"
+          type="button"
+          value="Delete Author"
+          onclick="deleteRow1('dataTable1')"
+        /><br />
+        <label for="Abstract">Abstract: <span class="required"> * </span></label
+        ><br />
+        <textarea
+          class="comment center"
+          rows="5"
+          cols="130"
+          name="Abstract"
+          type="text"
+          placeholder="Enter details here"
+          required
+        ></textarea>
+        <br />
+        <label for="Published_date"
+          >Published date: <span class="required"> * </span></label
+        >
+        <br />
+        <input
+          type="date"
+          max="3000-01-01"
+          onfocus="this.max=new Date().toISOString().split('T')[0]"
+          name="Published_date"
+          required
+        />
+        <br />
+
+        <label for="Location"
+          >Location of data on CEPH: <span class="required"> * </span></label
+        ><br />
+        <input
+          type="text"
+          id="Title"
+          minlength="1"
+          size="10"
+          name="Location"
+          required
+        /><br />
+        <br />
+
+        <label for="paperLink">Link to published paper: </label><br />
+        <input
+          type="text"
+          id="paperLink"
+          minlength="1"
+          size="10"
+          name="paperLink"
+        /><br />
+        <br />
+
+        <br />
+        <label for="released"
+          >Data/Reports to be released:
+          <span class="required" name="released"> * </span> </label
+        ><br />
+        <SCRIPT language="javascript">
+          function addRow(tableID) { var table =
+          document.getElementById(tableID); var rowCount = table.rows.length;
+          var row = table.insertRow(rowCount); var cell1 = row.insertCell(0);
+          var element1 = document.createElement("input"); element1.type =
+          "checkbox"; element1.name="chkbox[]"; cell1.appendChild(element1); var
+          cell2 = row.insertCell(1); var element2 =
+          document.createElement("input"); element2.type = "text"; element2.name
+          = "txtbox[]"; cell2.appendChild(element2); var cell3 =
+          row.insertCell(2); var element3 = document.createElement("input");
+          element3.type = "text"; element3.name = "txtbox[]";
+          cell3.appendChild(element3); } function deleteRow(tableID) { try { var
+          table = document.getElementById(tableID); var rowCount =
+          table.rows.length; for(var i=0; i<rowCount; i++) { var row =
+          table.rows[i]; var chkbox = row.cells[0].childNodes[0]; if(null !=
+          chkbox && true == chkbox.checked) { table.deleteRow(i); rowCount--;
+          i--; } } }catch(e) { alert(e); } }
+        </SCRIPT>
+        <TABLE class="center" id="dataTable" width="350px" border="2">
+          <TR>
+            <th for="fname"></th>
+            <th for="Download">Download</th>
+            <th for="Description">Description</th></TR
+          ><br />
+
+          <TD><INPUT type="checkbox" name="chk" /></TD>
+          <TD> <INPUT type="text" class="insideblock" required /> </TD>
+          <TD> <INPUT type="text" class="insideblock" required /> </TD>
+          <TR> </TR
+        ></TABLE>
+        <br /><INPUT
+          id="addrow"
+          class="innerborder"
+          type="button"
+          value="Add Row"
+          onclick="addRow('dataTable')"
+        />
+        <INPUT
+          id="delrow"
+          class="innerborder"
+          type="button"
+          value="Delete Row"
+          onclick="deleteRow('dataTable')"
+        /><br />
+        <SCRIPT>
+          //check required fields function checkrRequired(inputArr) {
+          inputArr.forEach(function(input) { if(input.value.trim() === '') {
+          showError(input, `${getFieldName(input)} is required`); } else {
+          showValid(input); } });
+        </SCRIPT>
+        <div class="container-main right" style="padding-top: 20px">
+          <button
+            class="innerborder"
+            id="submitBtn"
+            action="http://127.0.0.1:8000"
+            type="submit"
+            onsubmit="return validateForm();"
+          >
+            Submit
+          </button>
+        </div>
+        <br />
+      </form>
+      <script>
+        function validateForm() {
+          var name = document.getElementById("frname").value;
+          var email = document.getElementById("Email").value;
+
+          if (name == "" || email == "") {
+            alert("Please fill out all required fields.");
+            return false;
+          }
+
+          if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+          }
+
+          return true;
+        }
+
+        function validateEmail(email) {
+          var re = /\S+@\S+\.\S+/;
+          return re.test(email);
+        }
+      </script>
+      <footer>
+        <div class="container p-3">
+          <div class="row">
+            <div class="col-12 text-center">
+              <span class="info"
+                ><br />The created DOI form will be uploaded on the Repository
+                available at
+                <a
+                  color="dark blue"
+                  rel="website"
+                  href="http://dspace7.sdp.kat.ac.za"
+                  >SARAO Repository</a
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script>
+        // get the form element from dom
+        const formElement = document.querySelector("form#forms");
+
+        // convert the form to JSON
+        const getFormJSON = (form) => {
+          const data = new FormData(form);
+          return Array.from(data.keys()).reduce((result, key) => {
+            if (result[key]) {
+              result[key] = data.getAll(key);
+              return result;
+            }
+            result[key] = data.get(key);
+            return result;
+          }, {});
+        };
+
+        // handle the form submission event, prevent default form behaviour, check validity, convert form to JSON
+        const handler = (event) => {
+          event.preventDefault();
+          const valid = formElement.reportValidity();
+          if (valid) {
+            const result = getFormJSON(formElement);
+            // handle one, multiple or no files uploaded
+            const languages = [result.languages || []].flat();
+            // convert the checkbox to a boolean
+            const isHappyReader = !!(
+              result.isHappyReader && result.isHappyReader === "on"
+            );
+
+            // use spread function, but override the keys we've made changes to
+            const output = {
+              result,
+              languages,
+              isHappyReader,
+            };
+            console.log(output);
+          }
+
+          document
+            .getElementById("submitBtn")
+            .addEventListener("click", function (event) {
+              event.preventDefault(); // prevent form from submitting
+
+              var requiredFields = document.querySelectorAll(".required");
+              var isValid = true;
+
+              // check if all required fields are filled in
+              for (var i = 0; i < requiredFields.length; i++) {
+                if (requiredFields[i].value === "") {
+                  isValid = false;
+                  break;
+                }
+              }
+
+              if (isValid) {
+                // submit the form if all required fields are filled in
+                document.querySelector("form").submit();
+              } else {
+                // display error message if any required field is empty
+                alert("Please fill in all required fields.");
+              }
+            });
+          formElement.addEventListener("submit", handler);
+        };
+      </script>
+    </div>
+  </body>
+</html>

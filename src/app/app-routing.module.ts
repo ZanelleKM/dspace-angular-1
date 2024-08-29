@@ -79,6 +79,12 @@ import { ThemedPageErrorComponent } from './page-error/themed-page-error.compone
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'help',
+            loadChildren: () => import('./help-guide/help-guide.module')
+              .then((m) => m.HelpPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'id',
             loadChildren: () => import('./lookup-by-id/lookup-by-id.module')
               .then((m) => m.LookupIdModule),
@@ -171,6 +177,12 @@ import { ThemedPageErrorComponent } from './page-error/themed-page-error.compone
             path: 'logout',
             loadChildren: () => import('./logout-page/logout-page.module')
               .then((m) => m.LogoutPageModule)
+          },
+          {
+            path: 'create-doi',
+            loadChildren: () => import('./create-doi/create-doi.module')
+              .then((m) => m.CreateDoiModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'submit',

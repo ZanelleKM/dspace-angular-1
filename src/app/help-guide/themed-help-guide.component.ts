@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { ThemedComponent } from '../shared/theme-support/themed.component';
-import { AboutPageComponent } from './about-page.component';
+import { HelpPageComponent } from './help-guide.component';
 
 @Component({
-  selector: 'ds-themed-about-page',
+  selector: 'ds-themed-help-page',
   styleUrls: [],
   templateUrl: '../shared/theme-support/themed.component.html',
 })
-export class ThemedAboutPageComponent extends ThemedComponent<AboutPageComponent> {
+export class ThemedHelpPageComponent extends ThemedComponent<HelpPageComponent> {
   protected getComponentName(): string {
-    return 'AboutPageComponent';
+    return 'HelpPageComponent';
   }
 
   protected importThemedComponent(themeName: string): Promise<any> {
-    return import(`../../themes/${themeName}/app/about-page/about-page.component`);
+    return import(`../../themes/${themeName}/app/help-guide/help-guide.component`);
   }
 
   protected importUnthemedComponent(): Promise<any> {
-    return import(`./about-page.component`);
+    return import(`./help-guide.component`);
   }
 }

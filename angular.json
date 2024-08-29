@@ -22,7 +22,10 @@
               "path": "./webpack/webpack.browser.ts",
               "mergeStrategies": {
                 "loaders": "prepend"
-              }
+              },
+              "allowedCommonJsDependencies": [
+                "@grapecity/gcpdfviewer"
+              ]
             },
             "allowedCommonJsDependencies": [
               "angular2-text-mask",
@@ -96,8 +99,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "3mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",

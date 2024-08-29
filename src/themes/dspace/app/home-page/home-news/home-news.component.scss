@@ -47,8 +47,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      // object-fit: cover;
-      // object-position: top;
     }
 
     .title {
@@ -80,7 +78,6 @@
       &:before {
         background: linear-gradient(to left, var(--ds-banner-content-background), transparent);
         left: calc(-1 * var(--ds-banner-background-gradient-width));
-
       }
 
       &:after {

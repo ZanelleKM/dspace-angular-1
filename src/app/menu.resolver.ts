@@ -112,6 +112,28 @@ export class MenuResolver implements Resolve<boolean> {
           text: `menu.section.browse_global_about`,
           link: `/about`
         } as LinkMenuItemModel
+      },
+      {
+        id: `browse_global_create-doi`,
+        active: false,
+        visible: true,
+        index: 0,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_create-doi`,
+          link: `/create-doi`
+        } as LinkMenuItemModel
+      },
+      {
+        id: `browse_global_help`,
+        active: false,
+        visible: true,
+        index: 0,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_help`,
+          link: `/help`
+        } as LinkMenuItemModel
       }
     ];
     // Read the different Browse-By types from config and add them to the browse menu
