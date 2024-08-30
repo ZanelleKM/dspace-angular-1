@@ -47,8 +47,11 @@ cd dspace-angular
 # install the local dependencies
 yarn install
 
-# start the server
+# start the server 
 yarn start
+
+# OR start on development mode with
+yarn start:dev
 ```
 
 Then go to [http://localhost:4000](http://localhost:4000) in your browser
@@ -119,6 +122,16 @@ DSPACE_HOST # The host name of the angular application
 DSPACE_PORT # The port number of the angular application
 DSPACE_NAMESPACE # The namespace of the angular application
 DSPACE_SSL # Whether the angular application uses SSL [true/false]
+
+in our case we update the config.yml with 
+
+update config.yml with the following to run locally as we connect to dspace server with example data
+
+  ssl: true
+  host: demo.dspace.org
+  port: 443
+  nameSpace: /server
+
 ```
 
 All other settings can be set using the following convention for naming the environment variables:
